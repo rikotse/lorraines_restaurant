@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <title>Lorraine's Restaurant - Reservations</title>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="nav-links" class="logo">
+          <img
+            src="{% static 'lorraines/Images/Logo.png' %}"
+            alt="Lorraine's Logo"
+          />
+          <span>Lorraine's</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'menu' %}">Menu</a></li>
+          <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+          <li><a href="{% url 'reservations' %}">Reservations</a></li>
+          <li><a href="{% url 'ordering' %}">Online Ordering</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking">
+      <div class="container">
+        <div class="booking-image">
+          <img
+            src="{% static 'lorraines/Images/851879d2-8077-4f06-a396-6cf63e94f341.jpg' %}"
+            alt="Elegant dining area"
+          />
+        </div>
+        <section class="reservation-form">
+          <div class="booking-form-container">
+            <h2>Make a Reservation</h2>
+            <p>
+              Book your table online or call us at
+              <strong>+27 11 234 5678</strong>
+            </p>
+
+            <form
+              id="bookingForm"
+              class="booking-form"
+              action="{% url 'submit_reservation' %}"
+              method="POST"
+            >
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="bookingName">Full Name</label>
+                <input type="text" id="bookingName" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="bookingEmail">Email</label>
+                <input type="email" id="bookingEmail" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="bookingPhone">Phone</label>
+                <input type="tel" id="bookingPhone" name="phone" required />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bookingDate">Date</label>
+                  <input type="date" id="bookingDate" name="date" required />
+                </div>
+                <div class="form-group">
+                  <label for="bookingTime">Time</label>
+                  <select id="bookingTime" name="time" required>
+                    <option value="">Select time</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="12:30">12:30 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="13:30">1:30 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="18:30">6:30 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="19:30">7:30 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                    <option value="20:30">8:30 PM</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bookingGuests">Number of Guests</label>
+                  <select id="bookingGuests" name="guests" required>
+                    <option value="1">1 person</option>
+                    <option value="2">2 people</option>
+                    <option value="3">3 people</option>
+                    <option value="4">4 people</option>
+                    <option value="5">5 people</option>
+                    <option value="6">6 people</option>
+                    <option value="7">7 people</option>
+                    <option value="8">8+ people</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="bookingOccasion">Occasion (optional)</label>
+                  <select id="bookingOccasion" name="occasion">
+                    <option value="">None</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="anniversary">Anniversary</option>
+                    <option value="business">Business Dinner</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="bookingNotes">Special Requests (optional)</label>
+                <textarea id="bookingNotes" name="notes" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn">Book Table</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <button id="backToTopBtn" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>
+            12 Maude Street, Sandton<br />Johannesburg, 2196<br />South Africa
+          </p>
+          <p>Phone: +27 11 234 5678<br />Email: reservations@lorraines.co.za</p>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Monday - Thursday: 12:00 - 22:00</p>
+          <p>Friday - Saturday: 12:00 - 23:00</p>
+          <p>Sunday: 12:00 - 21:00</p>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+          <p>Subscribe to our newsletter for special events and promotions</p>
+          <form
+            class="newsletter-form"
+            method="POST"
+            action="{% url 'subscribe_newsletter' %}"
+          >
+            {% csrf_token %}
+            <input type="email" placeholder="Your email address" name="email" />
+            <button type="submit">Subscribe</button>
+          </form>
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Lorraine's Restaurant. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="{% static 'lorraines/js/script.js' %}"></script>
+  </body>
+</html>

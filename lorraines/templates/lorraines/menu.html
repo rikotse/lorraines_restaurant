@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lorraine's Restaurant – Menu</title>
+    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="lorraines-restaurant.html" class="logo">
+          <img
+            src="{% static 'lorraines/Images/Logo.png' %}"
+            alt="Lorraine's Logo"
+          />
+          <span>Lorraine's</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'menu' %}">Menu</a></li>
+          <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+          <li><a href="{% url 'reservations' %}">Reservations</a></li>
+          <li><a href="{% url 'ordering' %}">Online Ordering</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Menu Section -->
+    <section class="menu-section">
+      <div class="container">
+        <h2>Our Menu</h2>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="starters">Starters</button>
+          <button class="filter-btn" data-category="mains">Mains</button>
+          <button class="filter-btn" data-category="desserts">Desserts</button>
+          <button class="filter-btn" data-category="drinks">Drinks</button>
+        </div>
+
+        {% load static %}
+
+        <div class="menu-items-container">
+          <!-- STARTERS -->
+          <div class="menu-item" data-category="starters">
+            <img
+              src="{% static 'lorraines/Images/sprinbok.jpg' %}"
+              alt="Springbok Carpaccio"
+              class="menu-item-image"
+            />
+            <h3>Springbok Carpaccio <span>R195</span></h3>
+            <p>
+              Thinly sliced springbok with truffle oil, wild rocket and parmesan
+              shavings
+            </p>
+          </div>
+
+          <div class="menu-item" data-category="starters">
+            <img
+              src="{% static 'lorraines/Images/ostrich-tataki.jpg' %}"
+              alt="Ostrich Tataki"
+              class="menu-item-image"
+            />
+            <h3>Ostrich Tataki <span>R175</span></h3>
+            <p>Seared ostrich with ginger, soy and sesame dressing</p>
+          </div>
+
+          <div class="menu-item" data-category="starters">
+            <img
+              src="{% static 'lorraines/Images/Biltong-Salad.jpg' %}"
+              alt="Biltong Salad"
+              class="menu-item-image"
+            />
+            <h3>Biltong Salad <span>R145</span></h3>
+            <p>
+              Mixed greens with biltong, feta, avocado and a balsamic dressing
+            </p>
+          </div>
+
+          <div class="menu-item" data-category="starters">
+            <img
+              src="{% static 'lorraines/Images/Cheese-Platter.jpg' %}"
+              alt="Cheese Platter"
+              class="menu-item-image"
+            />
+            <h3>Cheese Platter <span>R180</span></h3>
+            <p>Selection of local cheeses with preserves and crackers</p>
+          </div>
+
+          <div class="menu-item" data-category="starters">
+            <img
+              src="{% static 'lorraines/Images/butternut-soup.jpg' %}"
+              alt="Butternut Soup"
+              class="menu-item-image"
+            />
+            <h3>Butternut Soup <span>R150</span></h3>
+            <p>Roasted butternut, cream, herbs</p>
+          </div>
+
+          <!-- MAINS -->
+          <div class="menu-item" data-category="mains">
+            <img
+              src="{% static 'lorraines/Images/0cd3cce4989dc9c9421304b768c4a034.jpg' %}"
+              alt="Cape Malay Curry"
+              class="menu-item-image"
+            />
+            <h3>Cape Malay Curry <span>R245</span></h3>
+            <p>
+              Traditional Cape Malay curry with linefish, served with sambals
+              and roti
+            </p>
+          </div>
+
+          <div class="menu-item" data-category="mains">
+            <img
+              src="{% static 'lorraines/Images/karoo-lamb-rack.jpg' %}"
+              alt="Karoo Lamb Rack"
+              class="menu-item-image"
+            />
+            <h3>Karoo Lamb Rack <span>R285</span></h3>
+            <p>Herb-crusted Karoo lamb with roasted vegetables and mint jus</p>
+          </div>
+
+          <div class="menu-item" data-category="mains">
+            <img
+              src="{% static 'lorraines/Images/Bobotie-Pie.jpg' %}"
+              alt="Bobotie Pie"
+              class="menu-item-image"
+            />
+            <h3>Bobotie Pie <span>R220</span></h3>
+            <p>
+              Traditional bobotie with a flaky pastry crust, served with yellow
+              rice
+            </p>
+          </div>
+
+          <div class="menu-item" data-category="mains">
+            <img
+              src="{% static 'lorraines/Images/Grilled-Kingklip.jpg' %}"
+              alt="Grilled Kingklip"
+              class="menu-item-image"
+            />
+            <h3>Grilled Kingklip <span>R260</span></h3>
+            <p>
+              Freshly grilled kingklip with lemon butter sauce and seasonal
+              vegetables
+            </p>
+          </div>
+
+          <div class="menu-item" data-category="mains">
+            <img
+              src="{% static 'lorraines/Images/grilled-lamb-chops.jpg' %}"
+              alt="Grilled Lamb Chops"
+              class="menu-item-image"
+            />
+            <h3>Grilled Lamb Chops <span>R270</span></h3>
+            <p>Served with pap & chakalaka</p>
+          </div>
+
+          <!-- DESSERTS -->
+          <div class="menu-item" data-category="desserts">
+            <img
+              src="{% static 'lorraines/Images/Malva-Pudding.jpg' %}"
+              alt="Malva Pudding"
+              class="menu-item-image"
+            />
+            <h3>Malva Pudding <span>R120</span></h3>
+            <p>Classic South African dessert with amarula custard</p>
+          </div>
+
+          <div class="menu-item" data-category="desserts">
+            <img
+              src="{% static 'lorraines/Images/chocolate-fondant.jpg' %}"
+              alt="Chocolate Fondant"
+              class="menu-item-image"
+            />
+            <h3>Chocolate Fondant <span>R130</span></h3>
+            <p>Warm chocolate fondant with rooibos ice cream</p>
+          </div>
+
+          <div class="menu-item" data-category="desserts">
+            <img
+              src="{% static 'lorraines/Images/trimasu-brownies.jpg' %}"
+              alt="Tiramisu Brownie"
+              class="menu-item-image"
+            />
+            <h3>Tiramisu Brownie <span>R160</span></h3>
+            <p>Decadent brownie layered with tiramisu cream and coffee sauce</p>
+          </div>
+
+          <div class="menu-item" data-category="desserts">
+            <img
+              src="{% static 'lorraines/Images/blackberry-mousse-tart.jpg' %}"
+              alt="Blackberry Mousse Tart"
+              class="menu-item-image"
+            />
+            <h3>Blackberry Mousse Tart <span>R140</span></h3>
+            <p>Light and creamy blackberry mousse tart with a biscuit base</p>
+          </div>
+
+          <div class="menu-item" data-category="desserts">
+            <img
+              src="{% static 'lorraines/Images/amarula-cheesecake.jpg' %}"
+              alt="Amarula Cheesecake"
+              class="menu-item-image"
+            />
+            <h3>Amarula Cheesecake <span>R140</span></h3>
+            <p>Velvety cheesecake with a South African twist</p>
+          </div>
+
+          <!-- DRINKS -->
+          <div class="menu-item" data-category="drinks">
+            <img
+              src="{% static 'lorraines/Images/Pinotage-Wine.jpg' %}"
+              alt="Pinotage Wine"
+              class="menu-item-image"
+            />
+            <h3>Pinotage Wine <span>R95/glass</span></h3>
+            <p>Premium South African Pinotage from Stellenbosch</p>
+          </div>
+
+          <div class="menu-item" data-category="drinks">
+            <img
+              src="{% static 'lorraines/Images/gin-and-tonic.jpg' %}"
+              alt="Craft Gin & Tonic"
+              class="menu-item-image"
+            />
+            <h3>Craft Gin & Tonic <span>R110/glass</span></h3>
+            <p>Local craft gin with premium tonic and botanicals</p>
+          </div>
+
+          <div class="menu-item" data-category="drinks">
+            <img
+              src="{% static 'lorraines/Images/Rooibos-Iced-Tea.jpg' %}"
+              alt="Rooibos Iced Tea"
+              class="menu-item-image"
+            />
+            <h3>Rooibos Iced Tea <span>R50/glass</span></h3>
+            <p>Refreshing iced tea made with local rooibos</p>
+          </div>
+
+          <div class="menu-item" data-category="drinks">
+            <img
+              src="{% static 'lorraines/Images/Craft-Beer-Selection.jpg' %}"
+              alt="Craft Beer Selection"
+              class="menu-item-image"
+            />
+            <h3>Craft Beer Selection <span>R70/glass</span></h3>
+            <p>Local craft beers from top South African breweries</p>
+          </div>
+
+          <div class="menu-item" data-category="drinks">
+            <img
+              src="{% static 'lorraines/Images/cocktails.jpg' %}"
+              alt="Cocktails"
+              class="menu-item-image"
+            />
+            <h3>Cocktails <span>R95/glass</span></h3>
+            <p>A selection of handcrafted cocktails using local spirits</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTopBtn" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>
+            12 Maude Street, Sandton<br />
+            Johannesburg, 2196<br />
+            South Africa
+          </p>
+          <p>Phone: +27 11 234 5678<br />Email: reservations@lorraines.co.za</p>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Monday - Thursday: 12:00 - 22:00</p>
+          <p>Friday - Saturday: 12:00 - 23:00</p>
+          <p>Sunday: 12:00 - 21:00</p>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+          <p>Subscribe to our newsletter for special events and promotions</p>
+          <form
+            class="newsletter-form"
+            method="POST"
+            action="{% url 'subscribe_newsletter' %}"
+          >
+            {% csrf_token %}
+            <input type="email" placeholder="Your email address" name="email" />
+            <button type="submit">Subscribe</button>
+          </form>
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Lorraine's Restaurant. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="{% static 'lorraines/js/script.js' %}"></script>
+  </body>
+</html>

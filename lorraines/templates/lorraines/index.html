@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <title>Lorraine's Restaurant - About Us</title>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="container">
+        <a href="nav-links" class="logo">
+          <img
+            src="{% static 'lorraines/Images/Logo.png' %}"
+            alt="Lorraine's Logo"
+          />
+          <span>Lorraine's</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'menu' %}">Menu</a></li>
+          <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+          <li><a href="{% url 'reservations' %}">Reservations</a></li>
+          <li><a href="{% url 'ordering' %}">Online Ordering</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="about reveal">
+      <div class="container">
+        <div class="about-content">
+          <h2>Our Story</h2>
+          <p>
+            Founded in 2010, Lorraine's has become Johannesburg's premier
+            destination for fine dining. Chef Lorraine Chauke combines
+            traditional South African ingredients with contemporary techniques
+            to create unforgettable culinary experiences.
+          </p>
+          <p>
+            Our restaurant is located in the vibrant Sandton district, featuring
+            an elegant interior with panoramic views of the city skyline.
+          </p>
+          <div class="awards">
+            <h3>Awards & Recognition</h3>
+            <ul>
+              <li>⭐ Eat Out Woolworths Restaurant Awards 2022 - Top 10</li>
+              <li>⭐ TripAdvisor Travelers' Choice 2023</li>
+              <li>⭐ Best Fine Dining - Johannesburg Lifestyle Awards 2021</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-image">
+          <img
+            src="{% static 'lorraines/Images/011d2da3-7c28-45df-b302-816279f9fa70.jpg' %}"
+            alt="Lorraine's Restaurant Interior"
+          />
+        </div>
+      </div>
+    </section>
+
+    <button id="backToTopBtn" title="Back to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>
+            12 Maude Street, Sandton<br />Johannesburg, 2196<br />South Africa
+          </p>
+          <p>Phone: +27 11 234 5678<br />Email: reservations@lorraines.co.za</p>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Monday - Thursday: 12:00 - 22:00</p>
+          <p>Friday - Saturday: 12:00 - 23:00</p>
+          <p>Sunday: 12:00 - 21:00</p>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+          <p>Subscribe to our newsletter for special events and promotions</p>
+          <form
+            class="newsletter-form"
+            method="POST"
+            action="{% url 'subscribe_newsletter' %}"
+          >
+            {% csrf_token %}
+            <input type="email" placeholder="Your email address" name="email" />
+            <button type="submit">Subscribe</button>
+          </form>
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Lorraine's Restaurant. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="{% static 'lorraines/js/script.js' %}"></script>
+  </body>
+</html>

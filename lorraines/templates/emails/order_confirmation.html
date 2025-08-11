@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial;
+        color: #333;
+      }
+      h2 {
+        color: #000;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+      }
+      th {
+        background-color: #f8f8f8;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Thank you for your order, {{ order.full_name }}!</h2>
+    <p>Here’s a summary of your order:</p>
+
+    <table>
+      <tr>
+        <th>Item</th>
+        <th>Qty</th>
+        <th>Price</th>
+      </tr>
+      {% for item in items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>R{{ item.price }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+
+    <p><strong>Total:</strong> R{{ order.total }}</p>
+    <p><strong>Delivery Type:</strong> {{ order.delivery_type }}</p>
+    <p><strong>Delivery Date:</strong> {{ order.delivery_date }}</p>
+    <p><strong>Payment Method:</strong> {{ order.payment_method }}</p>
+
+    <p>We’ll notify you once your order is on the way!</p>
+    <p>❤️ Lorraine’s Restaurant</p>
+  </body>
+</html>
