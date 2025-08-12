@@ -5,7 +5,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Confirmation</title>
-    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'lorraines/css/order_confirmation.css' %}"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -60,5 +63,53 @@
 
     <p>We’ll notify you once your order is on the way!</p>
     <p>❤️ Lorraine’s Restaurant</p>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p>
+            12 Maude Street, Sandton<br />Johannesburg, 2196<br />South Africa
+          </p>
+          <p>Phone: +27 11 234 5678<br />Email: reservations@lorraines.co.za</p>
+        </div>
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <p>Monday - Thursday: 12:00 - 22:00</p>
+          <p>Friday - Saturday: 12:00 - 23:00</p>
+          <p>Sunday: 12:00 - 21:00</p>
+        </div>
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+          <p>Subscribe to our newsletter for special events and promotions</p>
+          <form
+            class="newsletter-form"
+            method="POST"
+            action="{% url 'subscribe_newsletter' %}"
+          >
+            {% csrf_token %}
+            <input type="email" placeholder="Your email address" name="email" />
+            <button type="submit">Subscribe</button>
+          </form>
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
+            <li class="{{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2023 Lorraine's Restaurant. All rights reserved.</p>
+      </div>
+    </footer>
+    <script src="{% static 'lorraines/js/script.js' %}"></script>
   </body>
 </html>
