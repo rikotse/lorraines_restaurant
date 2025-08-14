@@ -15,7 +15,6 @@ body {
   color: #eee;
   line-height: 1.6;
   overflow-x: hidden;
-  padding: 1rem;
 }
 
 body.nav-open {
