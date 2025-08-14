@@ -52,6 +52,39 @@ strong {
   color: #b85c38;
 }
 
+/* ---------------- Footer ---------------- */
+.footer {
+  background-color: #000;
+  color: #ccc;
+}
+
+.footer .container {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.footer h3 {
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.footer a {
+  color: #eee;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   body {
     padding: 10px;
