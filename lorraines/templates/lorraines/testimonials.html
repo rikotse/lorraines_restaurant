@@ -4,175 +4,187 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <title>Lorraine's Restaurant - Testimonials</title>
+    <title>Lorraine's | Guest Love</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
   <body>
-    <!-- Navigation -->
+    
     <nav class="navbar">
-      <div class="container">
-        <a href="nav-links" class="logo">
-          <img
-            src="{% static 'lorraines/Images/Logo.png' %}"
-            alt="Lorraine's Logo"
-          />
-          <span>Lorraine's</span>
+      <div class="container nav-container">
+        <a href="{% url 'home' %}" class="logo">
+          <img src="{% static 'Images/Logo.png' %}" alt="Lorraine's Logo" />
+          <span class="logo-text">Lorraine's</span>
         </a>
         <ul class="nav-links">
           <li><a href="{% url 'home' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'menu' %}">Menu</a></li>
-          <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
+          <li><a href="{% url 'testimonials' %}" class="active-page">Testimonials</a></li>
           <li><a href="{% url 'reservations' %}">Reservations</a></li>
-          <li><a href="{% url 'ordering' %}">Online Ordering</a></li>
+          <li><a href="{% url 'ordering' %}" class="btn-highlight">Order Online</a></li>
         </ul>
         <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </div>
       </div>
     </nav>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-      <h2 class="section-title">What Our Guests Say</h2>
-      <p class="section-subtitle">Rated 4.9/5 from 347 reviews</p>
-
-      <div class="testimonial-slider">
-        <div class="testimonial-slide active">
-          <div class="rating">
-            <span class="stars">★★★★★</span>
-            <span class="date">March 15, 2023</span>
-          </div>
-          <p class="review">
-            "The springbok loin was cooked to perfection, and the service was
-            impeccable. Lorraine's has become our special occasion restaurant!"
-          </p>
-          <p class="author">- Thando Nkosi</p>
+    <header class="page-header" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('{% static 'Images/011d2da3-7c28-45df-b302-816279f9fa70.jpg' %}');">
+        <div class="header-content reveal-text">
+            <h1>Guest Stories</h1>
+            <p class="subtitle">Rated 4.9/5 from 347 reviews</p>
         </div>
+    </header>
 
-        <div class="testimonial-slide">
-          <div class="rating">
-            <span class="stars">★★★★☆</span>
-            <span class="date">February 28, 2023</span>
-          </div>
-          <p class="review">
-            "The wine pairing suggestion was spot on. The malva pudding dessert
-            brought back childhood memories with a sophisticated twist."
-          </p>
-          <p class="author">- James van der Merwe</p>
-        </div>
+    <section class="testimonials-section">
+      <div class="container">
+        
+        <div class="reviews-grid">
+            <div class="review-card reveal-text">
+                <div class="review-header">
+                    <div class="stars">★★★★★</div>
+                    <span class="date">March 15, 2023</span>
+                </div>
+                <h3>"A Special Occasion Gem"</h3>
+                <p>
+                    "The springbok loin was cooked to perfection, and the service was
+                    impeccable. Lorraine's has become our special occasion
+                    restaurant! The atmosphere is simply unmatched in Sandton."
+                </p>
+                <div class="author-block">
+                    <div class="author-avatar">TN</div>
+                    <div class="author-info">
+                        <span class="name">Thando Nkosi</span>
+                        <span class="status">Verified Guest</span>
+                    </div>
+                </div>
+            </div>
 
-        <div class="testimonial-slide">
-          <div class="rating">
-            <span class="stars">★★★★★</span>
-            <span class="date">January 10, 2023</span>
-          </div>
-          <p class="review">
-            "From the moment we walked in, we felt special. The attention to
-            detail in both food and service is remarkable."
-          </p>
-          <p class="author">- Priya Patel</p>
-        </div>
-        <div class="testimonial-dots"></div>
-      </div>
+            <div class="review-card reveal-text" style="transition-delay: 0.1s;">
+                <div class="review-header">
+                    <div class="stars">★★★★☆</div>
+                    <span class="date">Feb 28, 2023</span>
+                </div>
+                <h3>"Sophisticated Nostalgia"</h3>
+                <p>
+                    "The wine pairing suggestion was spot on. The malva pudding
+                    dessert brought back childhood memories with a sophisticated
+                    twist. Highly recommend the Pinotage."
+                </p>
+                <div class="author-block">
+                    <div class="author-avatar">JM</div>
+                    <div class="author-info">
+                        <span class="name">James van der Merwe</span>
+                        <span class="status">Verified Guest</span>
+                    </div>
+                </div>
+            </div>
 
-      <button class="add-review-btn">Add Your Review</button>
-
-      <!-- Review Form (hidden by default) -->
-      <div class="review-form-container">
-        <form
-          id="reviewForm"
-          class="review-form"
-          method="POST"
-          action="{% url 'add_review' %}"
-        >
-          {% csrf_token %}
-          <h3>Share Your Experience</h3>
-          <div class="form-group">
-            <label for="reviewName">Your Name</label>
-            <input type="text" id="reviewName" name="reviewName" required />
-          </div>
-          <div class="form-group">
-            <label for="reviewRating">Rating</label>
-            <select id="reviewRating" name="reviewRating" required>
-              <option value="">Select rating</option>
-              <option value="5">★★★★★</option>
-              <option value="4">★★★★☆</option>
-              <option value="3">★★★☆☆</option>
-              <option value="2">★★☆☆☆</option>
-              <option value="1">★☆☆☆☆</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="reviewText">Your Review</label>
-            <textarea
-              id="reviewText"
-              name="reviewText"
-              rows="4"
-              required
-            ></textarea>
-          </div>
-          <button type="submit" class="btn">Submit Review</button>
-        </form>
+            <div class="review-card reveal-text" style="transition-delay: 0.2s;">
+                <div class="review-header">
+                    <div class="stars">★★★★★</div>
+                    <span class="date">Jan 10, 2023</span>
+                </div>
+                <h3>"Remarkable Detail"</h3>
+                <p>
+                    "From the moment we walked in, we felt special. The attention to
+                    detail in both food and service is remarkable. A true jewel."
+                </p>
+                <div class="author-block">
+                    <div class="author-avatar">PP</div>
+                    <div class="author-info">
+                        <span class="name">Priya Patel</span>
+                        <span class="status">Verified Guest</span>
+                    </div>
+                </div>
+            </div>
+            
+            </div>
       </div>
     </section>
 
-    <button id="backToTopBtn" title="Back to top">
-      <i class="fas fa-arrow-up"></i>
-    </button>
+    <section class="write-review-section">
+        <div class="container reveal-text">
+            <div class="review-form-container gold-form">
+                <div class="form-header">
+                    <h2>Share Your Experience</h2>
+                    <p>We value your feedback</p>
+                </div>
+                
+                <form id="reviewForm" method="POST" action="{% url 'add_review' %}">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label>Your Name</label>
+                            <input type="text" id="reviewName" name="reviewName" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Rating</label>
+                            <select id="reviewRating" name="reviewRating" required>
+                                <option value="5">★★★★★ (Excellent)</option>
+                                <option value="4">★★★★☆ (Good)</option>
+                                <option value="3">★★★☆☆ (Average)</option>
+                                <option value="2">★★☆☆☆ (Poor)</option>
+                                <option value="1">★☆☆☆☆ (Terrible)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label>Your Review</label>
+                        <textarea id="reviewText" name="reviewText" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Post Review</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <div id="reviewSuccessModal" class="success-modal">
+        <div class="success-content">
+            <div class="success-icon"><i class="fas fa-star"></i></div>
+            <h3>Thank You</h3>
+            <p>We truly appreciate your feedback! Your review has been submitted for moderation and will appear shortly.</p>
+            <button class="btn-success-close" onclick="closeReviewModal()">Close</button>
+        </div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-section">
-          <h3>Contact Us</h3>
-          <p>
-            12 Maude Street, Sandton<br />Johannesburg, 2196<br />South Africa
-          </p>
-          <p>Phone: +27 11 234 5678<br />Email: reservations@lorraines.co.za</p>
-        </div>
-        <div class="footer-section">
-          <h3>Opening Hours</h3>
-          <p>Monday - Thursday: 12:00 - 22:00</p>
-          <p>Friday - Saturday: 12:00 - 23:00</p>
-          <p>Sunday: 12:00 - 21:00</p>
-        </div>
-        <div class="footer-section">
-          <h3>Follow Us</h3>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-          </div>
-          <p>Subscribe to our newsletter for special events and promotions</p>
-          <form
-            class="newsletter-form"
-            method="POST"
-            action="{% url 'subscribe_newsletter' %}"
-          >
-            {% csrf_token %}
-            <input type="email" placeholder="Your email address" name="email" />
-            <button type="submit">Subscribe</button>
-          </form>
-          {% if messages %}
-          <ul class="messages">
-            {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2023 Lorraine's Restaurant. All rights reserved.</p>
-      </div>
-    </footer>
-    <script src="{% static 'lorraines/js/script.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
+    
+    <script>
+        const reviewForm = document.getElementById('reviewForm');
+        const reviewModal = document.getElementById('reviewSuccessModal');
+
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(reviewForm);
+            
+            fetch(reviewForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    reviewModal.classList.add('active'); // Show modal
+                    reviewForm.reset(); // Clear form
+                } else {
+                    alert('Error submitting review: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function closeReviewModal() {
+            reviewModal.classList.remove('active');
+        }
+    </script>
   </body>
 </html>

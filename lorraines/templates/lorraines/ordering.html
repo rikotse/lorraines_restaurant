@@ -4,23 +4,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lorraine's Restaurant - Online Ordering</title>
-    <link rel="stylesheet" href="{% static 'lorraines/css/style.css' %}" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    <title>Lorraine's | Order Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
   </head>
-  <body class="ordering-page">
-    <!-- Navigation -->
+  <body class="app-body">
+    
+    <script>
+        const DJANGO_STATIC_URL = "{% static 'Images/' %}";
+    </script>
+
     <nav class="navbar">
-      <div class="container">
-        <a href="index.html" class="logo">
-          <img
-            src="{% static 'lorraines/Images/Logo.png' %}"
-            alt="Lorraine's Logo"
-          />
-          <span>Lorraine's</span>
+      <div class="container nav-container">
+        <a href="{% url 'home' %}" class="logo">
+          <img src="{% static 'Images/Logo.png' %}" alt="Lorraine's Logo" />
+          <span class="logo-text">Lorraine's</span>
         </a>
         <ul class="nav-links">
           <li><a href="{% url 'home' %}">Home</a></li>
@@ -28,475 +27,161 @@
           <li><a href="{% url 'menu' %}">Menu</a></li>
           <li><a href="{% url 'testimonials' %}">Testimonials</a></li>
           <li><a href="{% url 'reservations' %}">Reservations</a></li>
-          <li><a href="{% url 'ordering' %}">Online Ordering</a></li>
+          <li><a href="{% url 'ordering' %}" class="active-page btn-highlight">Order Online</a></li>
         </ul>
-        <div class="hamburger"><span></span><span></span><span></span></div>
+        <div class="hamburger">
+          <span></span><span></span><span></span>
+        </div>
       </div>
     </nav>
 
-    <!-- Order Tabs -->
-    <section class="booking-page">
-      <div class="container">
-        <div class="modal-nav">
-          <button id="menu-btn">Menu</button>
-          <button id="cart-btn">Cart <span class="cart-count">0</span></button>
-          <button id="checkout-btn">Checkout</button>
-        </div>
-
-        <!-- Menu Grid -->
-        <div class="order-menu-container" id="menuItemsContainer">
-          <div class="menu-items-container">
-            <!-- STARTERS -->
-            <div class="menu-item" data-category="starters" data-id="1">
-              <img
-                src="{% static 'lorraines/Images/sprinbok.jpg' %}"
-                alt="Springbok Carpaccio"
-                class="menu-item-image"
-              />
-              <h3>Springbok Carpaccio <span>R195</span></h3>
-              <p>
-                Thinly sliced springbok with truffle oil, wild rocket and
-                parmesan shavings
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
+    <section class="ordering-app">
+      <div class="container app-grid">
+        
+        <div class="menu-column">
+          <div class="app-header">
+            <h2>Start Your Order</h2>
+            <div class="app-filters">
+                <button class="app-filter active" data-category="all">All</button>
+                <button class="app-filter" data-category="starters">Starters</button>
+                <button class="app-filter" data-category="mains">Mains</button>
+                <button class="app-filter" data-category="desserts">Desserts</button>
+                <button class="app-filter" data-category="drinks">Drinks</button>
             </div>
-
-            <div class="menu-item" data-category="starters" data-id="2">
-              <img
-                src="{% static 'lorraines/Images/ostrich-tataki.jpg' %}"
-                alt="Ostrich Tataki"
-                class="menu-item-image"
-              />
-              <h3>Ostrich Tataki <span>R175</span></h3>
-              <p>Seared ostrich with ginger, soy and sesame dressing</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="starters" data-id="3">
-              <img
-                src="{% static 'lorraines/Images/Biltong-Salad.jpg' %}"
-                alt="Biltong Salad"
-                class="menu-item-image"
-              />
-              <h3>Biltong Salad <span>R145</span></h3>
-              <p>
-                Mixed greens with biltong, feta, avocado and a balsamic dressing
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="starters" data-id="4">
-              <img
-                src="{% static 'lorraines/Images/Cheese-Platter.jpg' %}"
-                alt="Cheese Platter"
-                class="menu-item-image"
-              />
-              <h3>Cheese Platter <span>R180</span></h3>
-              <p>Selection of local cheeses with preserves and crackers</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="starters" data-id="5">
-              <img
-                src="{% static 'lorraines/Images/butternut-soup.jpg' %}"
-                alt="Butternut Soup"
-                class="menu-item-image"
-              />
-              <h3>Butternut Soup <span>R150</span></h3>
-              <p>Roasted butternut, cream, herbs</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <!-- MAINS -->
-            <div class="menu-item" data-category="mains" data-id="6">
-              <img
-                src="{% static 'lorraines/Images/0cd3cce4989dc9c9421304b768c4a034.jpg' %}"
-                alt="Cape Malay Curry"
-                class="menu-item-image"
-              />
-              <h3>Cape Malay Curry <span>R245</span></h3>
-              <p>
-                Traditional Cape Malay curry with linefish, served with sambals
-                and roti
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="mains" data-id="7">
-              <img
-                src="{% static 'lorraines/Images/karoo-lamb-rack.jpg' %}"
-                alt="Karoo Lamb Rack"
-                class="menu-item-image"
-              />
-              <h3>Karoo Lamb Rack <span>R285</span></h3>
-              <p>
-                Herb-crusted Karoo lamb with roasted vegetables and mint jus
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="mains" data-id="8">
-              <img
-                src="{% static 'lorraines/Images/Bobotie-Pie.jpg' %}"
-                alt="Bobotie Pie"
-                class="menu-item-image"
-              />
-              <h3>Bobotie Pie <span>R220</span></h3>
-              <p>
-                Traditional bobotie with a flaky pastry crust, served with
-                yellow rice
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="mains" data-id="9">
-              <img
-                src="{% static 'lorraines/Images/Grilled-Kingklip.jpg' %}"
-                alt="Grilled Kingklip"
-                class="menu-item-image"
-              />
-              <h3>Grilled Kingklip <span>R260</span></h3>
-              <p>
-                Freshly grilled kingklip with lemon butter sauce and seasonal
-                vegetables
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="mains" data-id="10">
-              <img
-                src="{% static 'lorraines/Images/grilled-lamb-chops.jpg' %}"
-                alt="Grilled Lamb Chops"
-                class="menu-item-image"
-              />
-              <h3>Grilled Lamb Chops <span>R270</span></h3>
-              <p>Served with pap & chakalaka</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <!-- DESSERTS -->
-            <div class="menu-item" data-category="desserts" data-id="11">
-              <img
-                src="{% static 'lorraines/Images/Malva-Pudding.jpg' %}"
-                alt="Malva Pudding"
-                class="menu-item-image"
-              />
-              <h3>Malva Pudding <span>R120</span></h3>
-              <p>Classic South African dessert with amarula custard</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="desserts" data-id="12">
-              <img
-                src="{% static 'lorraines/Images/chocolate-fondant.jpg' %}"
-                alt="Chocolate Fondant"
-                class="menu-item-image"
-              />
-              <h3>Chocolate Fondant <span>R130</span></h3>
-              <p>Warm chocolate fondant with rooibos ice cream</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="desserts" data-id="13">
-              <img
-                src="{% static 'lorraines/Images/trimasu-brownies.jpg' %}"
-                alt="Tiramisu Brownie"
-                class="menu-item-image"
-              />
-              <h3>Tiramisu Brownie <span>R160</span></h3>
-              <p>
-                Decadent brownie layered with tiramisu cream and coffee sauce
-              </p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="desserts" data-id="14">
-              <img
-                src="{% static 'lorraines/Images/blackberry-mousse-tart.jpg' %}"
-                alt="Blackberry Mousse Tart"
-                class="menu-item-image"
-              />
-              <h3>Blackberry Mousse Tart <span>R140</span></h3>
-              <p>Light and creamy blackberry mousse tart with a biscuit base</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="desserts" data-id="15">
-              <img
-                src="{% static 'lorraines/Images/amarula-cheesecake.jpg' %}"
-                alt="Amarula Cheesecake"
-                class="menu-item-image"
-              />
-              <h3>Amarula Cheesecake <span>R140</span></h3>
-              <p>Velvety cheesecake with a South African twist</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <!-- DRINKS -->
-            <div class="menu-item" data-category="drinks" data-id="16">
-              <img
-                src="{% static 'lorraines/Images/Pinotage-Wine.jpg' %}"
-                alt="Pinotage Wine"
-                class="menu-item-image"
-              />
-              <h3>Pinotage Wine <span>R95/glass</span></h3>
-              <p>Premium South African Pinotage from Stellenbosch</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="drinks" data-id="17">
-              <img
-                src="{% static 'lorraines/Images/gin-and-tonic.jpg' %}"
-                alt="Craft Gin & Tonic"
-                class="menu-item-image"
-              />
-              <h3>Craft Gin & Tonic <span>R110/glass</span></h3>
-              <p>Local craft gin with premium tonic and botanicals</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="drinks" data-id="18">
-              <img
-                src="{% static 'lorraines/Images/Rooibos-Iced-Tea.jpg' %}"
-                alt="Rooibos Iced Tea"
-                class="menu-item-image"
-              />
-              <h3>Rooibos Iced Tea <span>R50/glass</span></h3>
-              <p>Refreshing iced tea made with local rooibos</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="drinks" data-id="19">
-              <img
-                src="{% static 'lorraines/Images/Craft-Beer-Selection.jpg' %}"
-                alt="Craft Beer Selection"
-                class="menu-item-image"
-              />
-              <h3>Craft Beer Selection <span>R70/glass</span></h3>
-              <p>Local craft beers from top South African breweries</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
-
-            <div class="menu-item" data-category="drinks" data-id="20">
-              <img
-                src="{% static 'lorraines/Images/cocktails.jpg' %}"
-                alt="Cocktails"
-                class="menu-item-image"
-              />
-              <h3>Cocktails <span>R85/glass</span></h3>
-              <p>A selection of handcrafted cocktails using local spirits</p>
-              <button class="btn add-to-cart-btn">Add to Cart</button>
-            </div>
+          </div>
+          
+          <div id="appMenuContainer" class="app-menu-grid">
+             <div class="loading-spinner"></div>
           </div>
         </div>
 
-        <!-- Cart Sidebar -->
-        <div class="cart-section">
-          <h3>Your Cart <span class="cart-count">(0)</span></h3>
-          <div class="cart-items" id="cartItemsContainer">
-            <div class="empty-cart-message">Your cart is empty</div>
-          </div>
-          <div class="cart-summary">
-            <div class="cart-totals">
-              <p>Subtotal: <span id="cartSubtotal">R0.00</span></p>
-              <p>Delivery Fee: <span id="deliveryFee">R0.00</span></p>
-              <p class="total">Total: <span id="cartTotal">R0.00</span></p>
+        <div class="cart-column">
+            <div class="cart-panel">
+                <div class="cart-header">
+                    <h3>Your Order</h3>
+                    <span class="badge" id="cartCountBadge">0</span>
+                </div>
+                
+                <div id="cartItemsContainer" class="cart-items-scroll">
+                    <div class="empty-state">
+                        <i class="fas fa-basket-shopping"></i>
+                        <p>Your basket is empty.</p>
+                    </div>
+                </div>
+
+                <div class="cart-footer">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="cartSubtotal">R0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee</span>
+                        <span id="deliveryFee">R50.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Total</span>
+                        <span id="cartTotal">R0.00</span>
+                    </div>
+                    <button id="checkoutBtn" class="btn-checkout" disabled>
+                        Proceed to Checkout
+                    </button>
+                </div>
             </div>
-            <button id="checkoutBtn" class="btn" disabled>Checkout</button>
-          </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Item Customization Modal -->
-    <div id="itemModal" class="modal">
-      <div class="modal-content">
-        <button class="close-modal">&times;</button>
-        <h3 id="modalItemName"></h3>
-        <img id="modalItemImage" src="" alt="Item" class="modal-image" />
-        <p id="modalItemDesc"></p>
-        <div class="form-group">
-          <label for="itemQuantity">Quantity</label>
-          <div class="quantity-controls">
-            <button id="decreaseQty">-</button>
-            <input type="number" id="itemQuantity" min="1" value="1" />
-            <button id="increaseQty">+</button>
-          </div>
+    <button id="mobileCartBtn" class="mobile-cart-toggle">
+        <i class="fas fa-shopping-bag"></i>
+        <span id="mobileCartCount">0</span>
+    </button>
+
+    <div id="itemModal" class="modal-backdrop">
+        <div class="modal-card">
+            <button class="close-modal">&times;</button>
+            <div class="modal-img-wrapper">
+                <img id="modalItemImage" src="" alt="Food">
+            </div>
+            <div class="modal-body">
+                <h3 id="modalItemName">Dish Name</h3>
+                <p id="modalItemDesc">Description goes here.</p>
+                <div class="modal-price" id="modalItemPrice">R0.00</div>
+                
+                <div class="control-group">
+                    <label>Quantity</label>
+                    <div class="qty-selector">
+                        <button id="decreaseQty"><i class="fas fa-minus"></i></button>
+                        <input type="number" id="itemQuantity" value="1" min="1" readonly>
+                        <button id="increaseQty"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label>Special Requests</label>
+                    <textarea id="itemNotes" placeholder="e.g. No onions, allergy info..."></textarea>
+                </div>
+                
+                <button id="confirmAddToCart" class="btn-modal-action">Add to Order</button>
+            </div>
         </div>
-        <div class="form-group">
-          <label for="itemNotes">Special Notes</label>
-          <textarea
-            id="itemNotes"
-            placeholder="e.g. no onions, extra sauce"
-          ></textarea>
-        </div>
-        <button id="confirmAddToCart" class="submit-btn">Add to Cart</button>
-      </div>
     </div>
 
-    <!-- Checkout Modal -->
-    <div id="orderModal" class="modal">
-      <div class="modal-content">
-        <button class="close-modal">&times;</button>
-        <h2>Complete Your Order</h2>
-        <form id="checkoutForm">
-          <div class="form-group">
-            <label for="name">Full Name*</label>
-            <input type="text" id="fullNameInput" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email*</label>
-            <input type="email" id="email" required />
-          </div>
-          <div class="form-group">
-            <label for="phone">Phone Number*</label>
-            <input type="tel" id="phone" required />
-          </div>
+    <div id="checkoutModal" class="modal-backdrop">
+        <div class="modal-card modal-large">
+            <button class="close-modal">&times;</button>
+            <div class="modal-header">
+                <h3>Secure Checkout</h3>
+            </div>
+            <div class="modal-body">
+                <form id="checkoutForm">
+                    <div class="form-row">
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                    
+                    <div class="checkout-toggle">
+                        <label>
+                            <input type="radio" name="deliveryType" value="delivery" checked> 
+                            <span>Delivery</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="deliveryType" value="pickup"> 
+                            <span>Pickup</span>
+                        </label>
+                    </div>
 
-          <div class="form-group">
-            <label>Delivery Type*</label>
-            <div class="delivery-options">
-              <label>
-                <input
-                  type="radio"
-                  name="deliveryType"
-                  value="delivery"
-                  checked
-                />
-                Delivery
-              </label>
-              <label>
-                <input type="radio" name="deliveryType" value="pickup" /> Pickup
-              </label>
+                    <div id="deliveryFields">
+                        <input type="text" id="address1" placeholder="Street Address" required>
+                        <div class="form-row">
+                            <input type="text" id="address2" placeholder="Suburb">
+                            <input type="text" id="address3" placeholder="City" value="Johannesburg">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="date" id="deliveryDate" required>
+                        <select id="deliveryTime" required>
+                            </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-modal-action">Place Order</button>
+                </form>
             </div>
-          </div>
-
-          <div id="deliveryFields" class="address-group">
-            <div class="form-group">
-              <label for="address1">Address Line 1*</label>
-              <input type="text" id="address1" required />
-            </div>
-            <div class="form-group">
-              <label for="address2">Address Line 2*</label>
-              <input type="text" id="address2" required />
-            </div>
-            <div class="form-group">
-              <label for="address3">Address Line 3*</label>
-              <input type="text" id="address3" required />
-            </div>
-            <div class="form-group">
-              <label for="address4">Address Line 4</label>
-              <input type="text" id="address4" />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="deliveryDate">Delivery/Pickup Date*</label>
-            <input type="date" id="deliveryDate" required />
-          </div>
-
-          <div class="form-group">
-            <label for="deliveryTime">Delivery/Pickup Time*</label>
-            <select id="deliveryTime" required></select>
-          </div>
-
-          <div class="form-group">
-            <label>Payment Method*</label>
-            <div class="payment-options">
-              <label>
-                <input type="radio" name="paymentMethod" value="card" checked />
-                Card Payment
-              </label>
-              <label>
-                <input type="radio" name="paymentMethod" value="cash" /> Cash on
-                Delivery/Collection
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="orderNotes">Order Notes</label>
-            <textarea
-              id="orderNotes"
-              placeholder="Any special instructions"
-            ></textarea>
-          </div>
-
-          <div class="order-summary-preview">
-            <div class="order-total-row">
-              <span>Subtotal:</span>
-              <span id="orderSubtotal">R0.00</span>
-            </div>
-            <div class="order-total-row">
-              <span id="feeLabel">Delivery Fee:</span>
-              <span id="orderFee">R50.00</span>
-            </div>
-            <div class="order-total-row total">
-              <span>Total:</span>
-              <span id="orderTotal">R0.00</span>
-            </div>
-          </div>
-
-          <button type="submit" class="submit-btn">Place Order</button>
-        </form>
-        <div
-          id="orderConfirmation"
-          class="confirmation-box"
-          style="display: none"
-        >
-          <div id="orderSummary"></div>
         </div>
-      </div>
     </div>
 
-    <!-- Back to Top Button -->
-    <button id="backToTopBtn" title="Back to Top">⬆</button>
+    <div id="orderSuccessModal" class="success-modal">
+        <div class="success-content">
+            <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+            <h3>Order Received!</h3>
+            <p>Thank you for dining with Lorraine's. Your order has been sent to the kitchen. You will receive a confirmation email shortly.</p>
+            <button class="btn-success-close" onclick="closeOrderSuccess()">Return to Menu</button>
+        </div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-section">
-          <h3>Contact Us</h3>
-          <p>
-            12 Maude Street, Sandton<br />Johannesburg, 2196<br />South Africa
-          </p>
-          <p>Phone: +27 11 234 5678<br />Email: reservations@lorraines.co.za</p>
-        </div>
-        <div class="footer-section">
-          <h3>Opening Hours</h3>
-          <p>Mon - Thu: 12:00 - 22:00</p>
-          <p>Fri - Sat: 12:00 - 23:00</p>
-          <p>Sunday: 12:00 - 21:00</p>
-        </div>
-        <div class="footer-section">
-          <h3>Follow Us</h3>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-          </div>
-          <form
-            class="newsletter-form"
-            method="POST"
-            action="{% url 'subscribe_newsletter' %}"
-          >
-            {% csrf_token %}
-            <input type="email" placeholder="Your email address" name="email" />
-            <button type="submit">Subscribe</button>
-          </form>
-          {% if messages %}
-          <ul class="messages">
-            {% for message in messages %}
-            <li class="{{ message.tags }}">{{ message }}</li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2023 Lorraine's Restaurant. All rights reserved.</p>
-      </div>
-    </footer>
-    <script src="{% static 'lorraines/js/ordering.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'ordering.js' %}"></script>
   </body>
 </html>
