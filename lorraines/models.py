@@ -10,7 +10,6 @@ class MenuItem(models.Model):
     def __str__(self):
         return self.name
 
-from django.db import models
 
 class Order(models.Model):
     DELIVERY_CHOICES = [

@@ -6,15 +6,15 @@ from django.http import JsonResponse
 import json
 from .forms import NewsletterSubscriptionForm
 from django.contrib import messages
-from django.utils.dateparse import parse_date, parse_time
+
 from .models import MenuItem, Reservation, Order, OrderItem, NewsletterSubscriber, Testimonial
 from .serializers import MenuItemSerializer, CartItemSerializer
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
 from django.conf import settings
-from django.db import migrations, models
-from django.utils.timezone import now
+
+
 
 def home(request):
     return render(request, 'lorraines/lorraines-restaurant.html')
@@ -62,7 +62,7 @@ def submit_reservation(request):
             notes=notes
         )
         return redirect('reservation_success')  
-    return render(request, 'reservations')  
+    return render(request, 'lorraines/reservations.html')
 
 def add_review(request):
     if request.method == "POST":
@@ -86,7 +86,6 @@ def add_to_cart(request):
 @api_view(['GET'])
 def get_menu_items(request):
     items = MenuItem.objects.all()
-    return render(request, 'lorraines/menu.html', {'items': items})
     serializer = MenuItemSerializer(items, many=True)
     return Response(serializer.data)
 
@@ -101,15 +100,9 @@ def subscribe_newsletter(request):
                 send_mail(
                     subject="Thanks for subscribing to Lorraine's Weekly Newsletter!",
                     message="Hi there!\n\nThanks for subscribing to our weekly newsletter. Stay tuned for exclusive updates, specials, and delicious content from Lorraine’s Restaurant.\n\nWith love,\nThe Lorraine’s Team 💌",
-                    from_email=settings.DEFAULT_FROM_EMAIL, 
-                    recipient_list=[email],                  
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[email],
                 )
-    if request.method == "POST":
-        form = NewsletterSubscriptionForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            subscriber, created = NewsletterSubscriber.objects.get_or_create(email=email)
-            if created:
                 messages.success(request, "Thanks for subscribing to our newsletter!")
             else:
                 messages.info(request, "You're already subscribed.")
@@ -154,22 +147,22 @@ def submit_order(request):
         )
 
         # Create OrderItems
-    for item in cart_items:
-        try:
-            menu_item = MenuItem.objects.get(pk=item.get('id'))
-        except MenuItem.DoesNotExist:
-            continue  
-        OrderItem.objects.create(
-            order=order,
-            menu_item=menu_item,
-            name=item.get('name'),
-            price=item.get('price'),
-            quantity=item.get('quantity'),
-            notes=item.get('notes', '')
-        )
+        for item in cart_items:
+            try:
+                menu_item = MenuItem.objects.get(pk=item.get('id'))
+            except MenuItem.DoesNotExist:
+                continue
+            OrderItem.objects.create(
+                order=order,
+                menu_item=menu_item,
+                name=item.get('name'),
+                price=item.get('price'),
+                quantity=item.get('quantity'),
+                notes=item.get('notes', '')
+            )
 
         # Send Confirmation Email
-        subject = f"Your Lorraine’s Restaurant Order #{order.id} Confirmation"
+        subject = f"Your Lorraine's Restaurant Order #{order.id} Confirmation"
         html_message = render_to_string('emails/order_confirmation.html', {
             'order': order,
             'items': cart_items
@@ -187,29 +180,3 @@ def submit_order(request):
         return JsonResponse({'success': True, 'order_id': order.id})
     return JsonResponse({'error': 'Invalid request method'}, status=400)
 
-def set_created_at(apps, schema_editor):
-    OrderItem = apps.get_model('yourappname', 'OrderItem')
-    for item in OrderItem.objects.all():
-        if not item.created_at:
-            item.created_at = now()
-            item.save(update_fields=['created_at'])
-
-class Migration(migrations.Migration):
-
-    dependencies = [
-        ('yourappname', 'previous_migration'),
-    ]
-
-    operations = [
-        migrations.AddField(
-            model_name='orderitem',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, null=True),
-        ),
-        migrations.RunPython(set_created_at),
-        migrations.AlterField(
-            model_name='orderitem',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True),
-        ),
-    ]

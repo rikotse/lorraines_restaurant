@@ -1533,3 +1533,45 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     transform: scale(1);
   }
 }
+
+/* =========================================
+   FOOTER CREDIT (Digital Watermark)
+   ========================================= */
+.footer-credit {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.4rem;
+  text-transform: uppercase;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.footer-credit:hover {
+  opacity: 1;
+}
+
+.footer-credit a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-credit a:hover {
+  color: var(--gold-light);
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.45);
+}
+
+/* On the reservation-success page, position the credit at the page bottom */
+.reservation-success-credit {
+  position: fixed;
+  bottom: 1rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
