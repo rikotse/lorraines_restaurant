@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-1(gn^vj131p9-^8nig=$zo9wxiq1_2te)^@f!uwn&ex!rf73&p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rikotse.pythonanywhere.com', '127.0.0.1', 'localhost', '.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -122,5 +122,4 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = '11faith.c@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
