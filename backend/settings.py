@@ -17,7 +17,7 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
 ALLOWED_HOSTS = ['*']
 
-# Trust your Vercel domain for CSRF (add your actual domain here)
+# Trust your Vercel domain for CSRF
 CSRF_TRUSTED_ORIGINS = [
     'https://*.vercel.app',
 ]
@@ -33,7 +33,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'lorraines',
     'rest_framework',
-
 ]
 
 MIDDLEWARE = [
@@ -52,7 +51,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'lorraines/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'lorraines', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -113,13 +112,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'lorraines/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'lorraines', 'static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # WhiteNoise for serving static files in production
+# Using CompressedStaticFilesStorage (NOT Manifest) to avoid 500 errors
+# when the manifest file doesn't exist yet
 STORAGES = {
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
