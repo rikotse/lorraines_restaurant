@@ -123,5 +123,4 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = '11faith.c@gmail.com'
-EMAIL_HOST_PASSWORD = 'ansv bszd yzhv tfvi'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
